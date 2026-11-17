@@ -1,0 +1,15 @@
+{
+  "id": "videdit_001",
+  "app": "com.solractabmx.videdit",
+  "tipo": "banner",
+  "forma": "larguito",
+  "activo": true,
+  "titulo": "Filtros Premium Solracta - 50% hoy en Valladolid",
+  "descripcion": "Desbloquea todos los filtros y textos pro",
+  "foto": "https://solractabmx-anuncios.vercel.app/fotos/filtro-premium.jpg",
+  "link": "https://wa.me/5219999999999?text=Quiero%20Filtros%20Premium",
+  "boton": "Ver Oferta",
+  "color_fondo": "#FF6B00",
+  "color_texto": "#FFFFFF",
+  "actualizado": "2026-11-17"
+}
