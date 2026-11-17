@@ -1,0 +1,14 @@
+{
+  "id": "videdit_inter_001",
+  "app": "com.solractabmx.videdit",
+  "tipo": "intersticial",
+  "forma": "pantalla_completa",
+  "activo": true,
+  "titulo": "¿Quieres exportar sin marca de agua?",
+  "descripcion": "Con Premium, tus videos salen limpios y en HD",
+  "foto": "https://solractabmx-anuncios.vercel.app/fotos/premium.jpg",
+  "link": "https://wa.me/5219999999999?text=Quiero%20Premium",
+  "boton": "Quitar Marca de Agua",
+  "color_fondo": "#111111",
+  "color_texto": "#FFFFFF"
+}
