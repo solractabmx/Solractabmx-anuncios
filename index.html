@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solracta - Centro de Anuncios</title>
+<style>
+  body{font-family:Arial;background:#111;color:#fff;padding:20px;max-width:900px;margin:auto}
+  h1{color:#FF6B00} h2{color:#FFD700}
+  .card{background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:16px;margin:12px 0}
+  label{display:block;margin-top:10px;font-size:13px;color:#aaa}
+  input,select,textarea{width:100%;padding:10px;margin-top:4px;border-radius:8px;border:1px solid #333;background:#222;color:#fff;box-sizing:border-box}
+  button{background:#FF6B00;color:#fff;border:none;padding:12px 18px;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:12px;width:100%}
+  button.sec{background:#222;border:1px solid #FF6B00;color:#FF6B00}
+  pre{background:#000;padding:12px;border-radius:8px;overflow:auto;font-size:12px;white-space:pre-wrap}
+  .preview{border:1px solid #333;border-radius:12px;overflow:hidden;margin-top:12px}
+  .preview img{width:100%;display:block}
+  .preview .txt{padding:12px}
+  .badge{display:inline-block;background:#FF6B00;padding:4px 8px;border-radius:20px;font-size:11px}
+</style>
+</head>
+<body>
+
+<h1>🧡 Solracta MX - Centro de Anuncios</h1>
+<p>Dominio: <b>solractabmx-anuncios.vercel.app</b></p>
+<p>Desde aquí controlas los anuncios de todas tus apps.</p>
+
+<div class="card">
+  <h2>1. Elige la app</h2>
+  <label>App</label>
+  <select id="app">
+    <option value="videdit">com.solractabmx.videdit - VideoEdit</option>
+    <option value="idiomas">com.solractabmx.idiomas - Juego de Idiomas</option>
+    <option value="anuncios">com.solractabmx.anuncios - App de Anuncios</option>
+  </select>
+
+  <label>Tipo de anuncio</label>
+  <select id="tipo">
+    <option value="banner">Banner - Larguito abajo</option>
+    <option value="intersticial">Intersticial - Pantalla completa al exportar</option>
+  </select>
+</div>
+
+<div class="card">
+  <h2>2. Crea tu anuncio</h2>
+  <label>Título</label>
+  <input id="titulo" value="Filtros Premium Solracta - 50% hoy en Valladolid">
+  <label>Descripción</label>
+  <input id="descripcion" value="Desbloquea todos los filtros y textos pro">
+  <label>Foto del anuncio (link)</label>
+  <input id="foto" value="https://solractabmx-anuncios.vercel.app/fotos/filtro-premium.jpg">
+  <label>Link al picarle (WhatsApp, tienda, etc)</label>
+  <input id="link" value="https://wa.me/5219999999999?text=Quiero%20Filtros%20Premium">
+  <label>Texto del botón</label>
+  <input id="boton" value="Ver Oferta">
+  <label>Color de fondo</label>
+  <input id="color" type="color" value="#FF6B00">
+
+  <button onclick="generar()">GENERAR JSON</button>
+  <button class="sec" onclick="copiar()">COPIAR JSON PARA VERCEL</button>
+</div>
+
+<div class="card">
+  <h2>3. Vista previa - Así se verá en la app</h2>
+  <div class="preview" id="preview">
+    <div class="txt"><span class="badge">ANUNCIO</span><br><b id="pTitulo">...</b><br><span id="pDesc">...</span></div>
+  </div>
+  <h3>JSON generado:</h3>
+  <pre id="salida">Llena el formulario y dale GENERAR JSON</pre>
+  <p style="font-size:12px;color:#aaa">Cómo usarlo: Copia este JSON, ve a tu carpeta solracta-anuncios / anuncios / videdit.json, pégalo, guarda y haz deploy en Vercel. En 10 segundos tu app ya muestra el anuncio nuevo.</p>
+</div>
+
+<script>
+function generar(){
+  const app = document.getElementById('app').value;
+  const tipo = document.getElementById('tipo').value;
+  const obj = {
+    id: app + "_" + Date.now(),
+    app: "com.solractabmx." + app,
+    tipo: tipo,
+    forma: tipo === 'banner' ? 'larguito' : 'pantalla_completa',
+    activo: true,
+    titulo: document.getElementById('titulo').value,
+    descripcion: document.getElementById('descripcion').value,
+    foto: document.getElementById('foto').value,
+    link: document.getElementById('link').value,
+    boton: document.getElementById('boton').value,
+    color_fondo: document.getElementById('color').value,
+    color_texto: "#FFFFFF",
+    actualizado: new Date().toISOString().slice(0,10)
+  };
+  document.getElementById('salida').textContent = JSON.stringify(obj, null, 2);
+  document.getElementById('pTitulo').textContent = obj.titulo;
+  document.getElementById('pDesc').textContent = obj.descripcion;
+  document.getElementById('preview').style.background = obj.color_fondo;
+}
+function copiar(){
+  const t = document.getElementById('salida').textContent;
+  navigator.clipboard.writeText(t);
+  alert('¡Copiado! Ahora pégalo en tu archivo anuncios/videdit.json');
+}
+generar();
+</script>
+</body>
+</html>
